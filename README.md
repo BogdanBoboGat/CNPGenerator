@@ -1,1 +1,1 @@
-# CNP.Generator
+# CNPGenerator

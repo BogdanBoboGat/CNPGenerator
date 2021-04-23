@@ -67,15 +67,7 @@ class human():
 		else:
 			self.location = random.choice(list(location.values()))
 
-		if self.year <= 1899:
-			if sex == 'male':
-				self.sex = 3
-			elif sex == 'female':
-				self.sex = 4
-			else:
-				self.sex = random.choice([3, 4])
-
-		elif self.year <= 1999:
+		if self.year <= 1999:
 			if sex == 'male':
 				self.sex = 1
 			elif sex == 'female':
@@ -95,4 +87,4 @@ class human():
 
 
 human = human()
-print(str(human.year % 100))
+print(human.sex, human.year, human.month, human.day, human.location, human.ran)

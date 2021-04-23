@@ -3,105 +3,96 @@ import names
 import random
 
 class human():
-    def __init__(self):
-        
-        self.day = random.randrange(1, 31)
-        self.month = random.randrange(1, 12)
-        self.year = random.choice([random.randrange(50, 99), random.randrange(0, 21)])
-        
-        sex = random.choice([1, 2, 3, 4, 5, 6])
-        other = random.randrange(99999, 999999)
+	def __init__(self, day = list(range(1, 32)), month = list(range(1, 13)), year = list(range(1900, 2021)), place = '', sex = ''):
+		location = {
+			'Alba' : '01',
+			'Arad' : '02',
+			'Argeș' : '03',
+			'Bacău' : '04',
+			'Bihor' : '05',
+			'Bistrița-Năsăud' : '06',
+			'Botoșani' : '07',
+			'Brașov' : '08',
+			'Brăila' : '09',
+			'Buzău' : '10',
+			'Caraș-Severin' : '11',
+			'Cluj' : '12',
+			'Constanța' : '13',
+			'Covasna' : '14',
+			'Dâmbovița' : '15',
+			'Dolj' : '16',
+			'Galați' : '17',
+			'Gorj' : '18',
+			'Harghita' : '19',
+			'Hunedoara' : '20',
+			'Ialomița' : '21',
+			'Iași' : '22',
+			'Ilfov' : '23',
+			'Maramureș' : '24',
+			'Mehedinți' : '25',
+			'Mureș' : '26',
+			'Neamț' : '27',
+			'Olt' : '28',
+			'Prahova' : '29',
+			'SatuMare' : '30',
+			'Sălaj' : '31',
+			'Sibiu' : '32',
+			'Suceava' : '33',
+			'Teleorman' : '34',
+			'Timiș' : '35',
+			'Tulcea' : '36',
+			'Vaslui' : '37',
+			'Vâlcea' : '38',
+			'Vrancea' : '39',
+			'București' : '40',
+			'București-Sector1' : '41',
+			'București-Sector2' : '42',
+			'București-Sector3' : '43',
+			'București-Sector4' : '44',
+			'București-Sector5' : '45',
+			'București-Sector6' : '46',
+			'Călărași' : '51',
+			'Giurgiu' : '52'
+		}
+		key_location = list(location.keys())
+		val_location = list(location.values())
+		
+		self.year = random.choice(year)
+		self.month = random.choice(month)
+		self.day = random.choice(day)
+		self.ran = random.choice(list(range(1, 1000)))
 
-        if sex % 2 == 0:
-            self.sex = 'female'
-            self.name = names.get_full_name(gender='female')
-        else:
-            self.sex = 'male'
-            self.name = names.get_full_name(gender='male')
+		if place in list(location.keys()):
+			self.location = location[place]
+		else:
+			self.location = random.choice(list(location.values()))
 
-        if self.day < 10:
-            
-            if self.month < 10:
-                
-                if self.year < 10:
-                    self.cnp = str(sex) + '0' + str(self.year) + '0' + str(self.month) + '0' + str(self.day) + str(other)
-        
-                else:
-                    self.cnp = str(sex) + str(self.year) + '0' + str(self.month) + '0' + str(self.day) + str(other)
+		if self.year <= 1899:
+			if sex == 'male':
+				self.sex = 3
+			elif sex == 'female':
+				self.sex = 4
+			else:
+				self.sex = random.choice([3, 4])
 
-            else:
-
-                if self.year < 10:
-                    self.cnp = str(sex) + '0' + str(self.year) + str(self.month) + '0' + str(self.day) + str(other)
-        
-                else:
-                    self.cnp = str(sex) + str(self.year) + str(self.month) + '0' + str(self.day) + str(other)
-        
-        else:
-            if self.month < 10:
-                
-                if self.year < 10:
-                    self.cnp = str(sex) + '0' + str(self.year) + '0' + str(self.month)  + str(self.day) + str(other)
-        
-                else:
-                    self.cnp = str(sex) + str(self.year) + '0' + str(self.month) + str(self.day) + str(other)
-
-            else:
-
-                if self.year < 10:
-                    self.cnp = str(sex) + '0' + str(self.year) + str(self.month) + str(self.day) + str(other)
-        
-                else:
-                    self.cnp = str(sex) + str(self.year) + str(self.month) + str(self.day) + str(other)
+		elif self.year <= 1999:
+			if sex == 'male':
+				self.sex = 1
+			elif sex == 'female':
+				self.sex = 2
+			else:
+				self.sex = random.choice([1, 2])
+		
+		elif self.year <= 2099:
+			if sex == 'male':
+				self.sex = 5
+			elif sex == 'female':
+				self.sex = 6
+			else:
+				self.sex = random.choice([5, 6])
 
 
-    def __str__(self):
-        if self.day < 10:
-            
-            if self.month < 10:
-                
-                if self.year < 10:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.0{self.month}.200{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                elif self.year > 10 and self.year < 22:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.0{self.month}.20{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                else:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.0{self.month}.19{self.year} and my Romanian CNP is {self.cnp}.'
 
-            else:
 
-                if self.year < 10:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.{self.month}.200{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                elif self.year > 10 and self.year < 22:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.{self.month}.20{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                else:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in 0{self.day}.{self.month}.19{self.year} and my Romanian CNP is {self.cnp}.'
-        
-        else:
-            if self.month < 10:
-                
-                if self.year < 10:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.0{self.month}.200{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                elif self.year > 10 and self.year < 22:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.0{self.month}.20{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                else:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.0{self.month}.19{self.year} and my Romanian CNP is {self.cnp}.'
-
-            else:
-
-                if self.year < 10:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.{self.month}.200{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                elif self.year > 10 and self.year < 22:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.{self.month}.20{self.year} and my Romanian CNP is {self.cnp}.'
-        
-                else:
-                    return f'Hello! My name is {self.name}, I am a {self.sex}. I was born in {self.day}.{self.month}.19{self.year} and my Romanian CNP is {self.cnp}.'
-
-for i in range(10):
-    print(human())
+human = human()
+print(str(human.year % 100))
